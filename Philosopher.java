@@ -133,17 +133,20 @@ public class Philosopher extends BaseThread
 		/**
 		 * Thread yielding
 		 */
+
 		Thread.yield();
 
 		/**
 		 * Print statement that philosopher has done talking
 		 */
+
 		System.out.println("Philosopher " + this.getTID() + " is done talking");
 	}
 
 	/**
 	 * No, this is not the act of running, just the overridden Thread.run()
 	 */
+
 	public void run()
 	{
 		for(int i = 0; i < DiningPhilosophers.DINING_STEPS; i++)
@@ -156,16 +159,23 @@ public class Philosopher extends BaseThread
 
 			think();
 
-			/*
-			 * TODO:
-			 * A decision is made at random whether this particular
-			 * philosopher is about to say something terribly useful.
+			/**
+			 * Decision is made randomly to have the philosopher speak using Math.random
 			 */
-			if(true == false)
+
+			if(Math.random() > 0.5)
 			{
-				// Some monitor ops down here...
+				/**
+				 * Philosopher requests to talk using monitor procedure
+				 */
+				DiningPhilosophers.soMonitor.requestTalk();
+
 				talk();
-				// ...
+
+				/**
+				 * Philosopher requests to talk using monitor procedure
+				 */
+				DiningPhilosophers.soMonitor.endTalk();
 			}
 
 			yield();
