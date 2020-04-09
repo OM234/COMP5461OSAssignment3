@@ -6,6 +6,7 @@
  */
 public class Monitor
 {
+	private int numChopsticks;
 	/*
 	 * ------------
 	 * Data members
@@ -19,6 +20,8 @@ public class Monitor
 	public Monitor(int piNumberOfPhilosophers)
 	{
 		// TODO: set appropriate number of chopsticks based on the # of philosophers
+		
+		numChopsticks = piNumberOfPhilosophers;
 	}
 
 	/*

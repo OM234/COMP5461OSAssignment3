@@ -23,10 +23,20 @@ public class Philosopher extends BaseThread
 	 */
 	public void eat()
 	{
+		/**
+		 * Print statement that philosopher has started eating
+		 */
+		System.out.println("Philosopher " + this.getTID() + " has started eating");
+
+		/**
+ 		* Thread yielding
+ 		*/
+		Thread.yield();
+
 		try
 		{
 			// ...
-			sleep((long)(Math.random() * TIME_TO_WASTE));
+			Thread.sleep((long)(Math.random() * TIME_TO_WASTE));
 			// ...
 		}
 		catch(InterruptedException e)
@@ -35,6 +45,16 @@ public class Philosopher extends BaseThread
 			DiningPhilosophers.reportException(e);
 			System.exit(1);
 		}
+
+		/**
+		 * Thread yielding
+		 */
+		Thread.yield();
+
+		/**
+		 * Print statement that philosopher has done eating
+		 */
+		System.out.println("Philosopher " + this.getTID() + " is done eating");
 	}
 
 	/**
@@ -47,7 +67,43 @@ public class Philosopher extends BaseThread
 	 */
 	public void think()
 	{
-		// ...
+		/**
+		 * Print statement that philosopher has started thinking
+		 */
+
+		System.out.println("Philosopher " + this.getTID() + " has started thinking");
+
+		/**
+		 * Thread yielding
+		 */
+
+		Thread.yield();
+
+		/**
+		 * Thread sleeping
+		 */
+		try
+		{
+			// ...
+			Thread.sleep((long)(Math.random() * TIME_TO_WASTE));
+			// ...
+		}
+		catch(InterruptedException e)
+		{
+			System.err.println("Philosopher.think():");
+			DiningPhilosophers.reportException(e);
+			System.exit(1);
+		}
+
+		/**
+		 * Thread yielding
+		 */
+		Thread.yield();
+
+		/**
+		 * Print statement that philosopher has done thinking
+		 */
+		System.out.println("Philosopher " + this.getTID() + " is done thinking");
 	}
 
 	/**
@@ -60,11 +116,29 @@ public class Philosopher extends BaseThread
 	 */
 	public void talk()
 	{
-		// ...
+		/**
+		 * Print statement that philosopher has started talking
+		 */
+
+		System.out.println("Philosopher " + this.getTID() + " has started talking");
+
+		/**
+		 * Thread yielding
+		 */
+
+		Thread.yield();
 
 		saySomething();
 
-		// ...
+		/**
+		 * Thread yielding
+		 */
+		Thread.yield();
+
+		/**
+		 * Print statement that philosopher has done talking
+		 */
+		System.out.println("Philosopher " + this.getTID() + " is done talking");
 	}
 
 	/**
