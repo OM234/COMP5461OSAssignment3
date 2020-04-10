@@ -23,12 +23,12 @@ public class Philosopher extends BaseThread
 	 */
 	public void eat()
 	{
-		/**
+		/*
 		 * Print statement that philosopher has started eating
 		 */
 		System.out.println("Philosopher " + this.getTID() + " has started eating");
 
-		/**
+		/*
  		* Thread yielding
  		*/
 		Thread.yield();
@@ -46,12 +46,12 @@ public class Philosopher extends BaseThread
 			System.exit(1);
 		}
 
-		/**
+		/*
 		 * Thread yielding
 		 */
 		Thread.yield();
 
-		/**
+		/*
 		 * Print statement that philosopher has done eating
 		 */
 		System.out.println("Philosopher " + this.getTID() + " is done eating");
@@ -67,19 +67,19 @@ public class Philosopher extends BaseThread
 	 */
 	public void think()
 	{
-		/**
+		/*
 		 * Print statement that philosopher has started thinking
 		 */
 
 		System.out.println("Philosopher " + this.getTID() + " has started thinking");
 
-		/**
+		/*
 		 * Thread yielding
 		 */
 
 		Thread.yield();
 
-		/**
+		/*
 		 * Thread sleeping
 		 */
 		try
@@ -95,12 +95,12 @@ public class Philosopher extends BaseThread
 			System.exit(1);
 		}
 
-		/**
+		/*
 		 * Thread yielding
 		 */
 		Thread.yield();
 
-		/**
+		/*
 		 * Print statement that philosopher has done thinking
 		 */
 		System.out.println("Philosopher " + this.getTID() + " is done thinking");
@@ -116,13 +116,13 @@ public class Philosopher extends BaseThread
 	 */
 	public void talk()
 	{
-		/**
+		/*
 		 * Print statement that philosopher has started talking
 		 */
 
 		System.out.println("Philosopher " + this.getTID() + " has started talking");
 
-		/**
+		/*
 		 * Thread yielding
 		 */
 
@@ -130,13 +130,13 @@ public class Philosopher extends BaseThread
 
 		saySomething();
 
-		/**
+		/*
 		 * Thread yielding
 		 */
 
 		Thread.yield();
 
-		/**
+		/*
 		 * Print statement that philosopher has done talking
 		 */
 
@@ -159,23 +159,23 @@ public class Philosopher extends BaseThread
 
 			think();
 
-			/**
+			/*
 			 * Decision is made randomly to have the philosopher speak using Math.random
 			 */
 
 			if(Math.random() > 0.5)
 			{
-				/**
+				/*
 				 * Philosopher requests to talk using monitor procedure
 				 */
-				DiningPhilosophers.soMonitor.requestTalk();
+				DiningPhilosophers.soMonitor.requestTalk(getTID());
 
 				talk();
 
-				/**
+				/*
 				 * Philosopher requests to talk using monitor procedure
 				 */
-				DiningPhilosophers.soMonitor.endTalk();
+				DiningPhilosophers.soMonitor.endTalk(getTID());
 			}
 
 			yield();

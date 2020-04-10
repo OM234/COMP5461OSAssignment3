@@ -24,9 +24,9 @@ public class BaseThread extends Thread
 	 */
 
 	/**
-	 * Preserves value across all instances
+	 * Preserves value across all instances. Value changed to 0
 	 */
-	public static int siNextTID = 1;
+	public static int siNextTID = 0;
 
 	/**
 	 * Our Thread ID
