@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Class DiningPhilosophers
  * The main starter.
@@ -11,6 +13,8 @@ public class DiningPhilosophers
 	 * Data members
 	 * ------------
 	 */
+
+	static Scanner in;
 
 	/**
 	 * This default may be overridden from the command line
@@ -39,14 +43,30 @@ public class DiningPhilosophers
 	 */
 	public static void main(String[] argv)
 	{
+
+		/*
+		 * Gets user input for the number of philosophers
+		 */
 		try
 		{
-			/*
-			 * TODO:
-			 * Should be settable from the command line
-			 * or the default if no arguments supplied.
-			 */
-			int iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
+			in = new Scanner(System.in);
+			int iPhilosophers = 0;
+			String userInput;
+
+			do
+			{
+				System.out.print("Number of philosophers: ");
+				userInput = in.nextLine();
+
+				if(userInput.length() == 0)
+					iPhilosophers = DEFAULT_NUMBER_OF_PHILOSOPHERS;
+				else
+					try
+					{
+						iPhilosophers = Integer.parseInt(userInput);
+					}
+					catch (NumberFormatException e) {}
+			} while(iPhilosophers < 1);
 
 			// Make the monitor aware of how many philosophers there are
 			soMonitor = new Monitor(iPhilosophers);

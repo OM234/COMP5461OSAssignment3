@@ -129,8 +129,28 @@ public class Monitor
 	 */
 	public synchronized void requestTalk(final int piTID)
 	{
+		/*
+		 * If no one is speaking, and if the philosopher is not eating, then the philosopher speaks.
+		 * The loop will iterate will the philosopher is not speaking
+		 */
+
 		while(philSpeakingState[piTID] == speakingStatus.NOTSPEAKING)
 		{
+			Boolean someoneSpeaking = false;
+
+			for(speakingStatus speakStatus : philSpeakingState)
+			{
+				if(speakStatus == speakingStatus.SPEAKING)
+				{
+					someoneSpeaking = true;
+					break;
+				}
+			}
+
+			if(!(philEatingState[piTID] == eatingStatus.EATING) && !someoneSpeaking)
+			{
+				philSpeakingState[piTID] = speakingStatus.SPEAKING;
+			}
 
 			if(philSpeakingState[piTID] == speakingStatus.NOTSPEAKING)
 			{
@@ -149,7 +169,13 @@ public class Monitor
 	 */
 	public synchronized void endTalk(final int piTID)
 	{
-		// ...
+		/*
+		 * The philosopher sets his speaking status to NOTSPEAKING, and notifies the blocked threads
+		 */
+
+		philSpeakingState[piTID] = speakingStatus.NOTSPEAKING;
+
+		notifyAll();
 	}
 
 
